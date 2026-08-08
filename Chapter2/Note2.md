@@ -50,7 +50,7 @@
 3. 연산처리
 가장 아래 계층에 속하는 C또는 CUDA패키지는 상위의 API에서 할당된 거의 모든 계산을 수행
 
-<텐서를 메모리에 저장>
+(텐서를 메모리에 저장)
 텐서는 메모리에 저장할 때 1차원의 배열 형태가 된다.
 스토리지(storage): 변환된 1차원 배열
 - 오프셋(offset): 텐서에서 첫 번째 요소가 스토리지에 저장된 인덱스
@@ -60,27 +60,26 @@
 ### 2.2 파이토치 기초 문법
 파이토치는 텐서로 시작해서 텐서로 끝난다고 해도 과언이 아니다.
 #### 2.2.1 텐서 다루기
-<텐서 생성 코드>
+텐서 생성 코드
     import torch
     print(torch.tensor([[1,2], [3,4]])) -> 2차원 형태의 텐서 생성
     print(torch.tensor([[1,2], [3,4]], device="cuda:0")) ->GPU에 텐서 생성
     print(torch.tensor([[1,2], [3,4]], dtype=torch.float64)) -> dtype을 이용하여 텐서 생성
 
-<텐서를 ndrarray로 변환>
+텐서를 ndrarray로 변환
     temp = torch.tensor([[1,2], [3,4]])
     print(temp.numpy()) -> 텐서를 ndarray로 변환
-
     temp = torch.tensor([[1,2], [3,4]], divice = "cuda:0")
     print(temp.to("cpu").numpy()) -> GPU상의 텐서를 CPU의 텐서로 변환한 후 ndarray로 변환
 
 - 텐서는 배열처럼 인덱스를 바로 지정하거나 슬라이스 등을 사용할 수 있다.
 
-<텐서의 자료형>
+(텐서의 자료형)
 - torch.FloatTensor: 32비트의 부동 소수점
 - torch.DouvleTensor: 64비트의 부동 소수점
 - torch.Long Tensor: 64비트의 부호가 있는 정수
 
-<인덱스 조작 코드>
+인덱스 조작 코드
     temp = torch.FloatTensor([1,2,3,4,5,6,7])
     print(temp[0], temp[1], temp[-1]) ->인덱스로 접근
     print(temp[2:5], temp[4: -1]) -> 슬라이스로 접근
@@ -90,7 +89,7 @@
 - cat: 다른 길이의 텐서를 하나로 병합할 때 사용
 - transpose: 행렬의 전치외에도 차원의 순서를 변경할 때 사용
 
-<텐서를 조작하는 코드>
+텐서를 조작하는 코드
     temp= torch.tensor([[1,2], [3,4]]) -> 2*2행렬 생성
     print(temp.shape)
     print(temp.view(4,1)) -> 4*1로 변형
