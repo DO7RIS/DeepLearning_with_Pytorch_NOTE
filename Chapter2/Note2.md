@@ -16,9 +16,11 @@
  텐서(tensor) : 3차원 이상의 배열, axis 2
 
 텐서를 표현하기 위한 코드
- import torch
- torch.tensor([[1., -1.], [1., -1.]])
-- 동적 신경망: 훈련을 반복할 때마다 네트워크 변경이 가능한 신경망, 연산 그래프를 정의하는 동시에 값도 초기화하는 'Define by Run'방식을 사용하기에 그래프와 연산을 분리해서 생각할 필요 없음.
+
+    import torch
+    torch.tensor([[1., -1.], [1., -1.]])
+ 
+동적 신경망: 훈련을 반복할 때마다 네트워크 변경이 가능한 신경망, 연산 그래프를 정의하는 동시에 값도 초기화하는 'Define by Run'방식을 사용하기에 그래프와 연산을 분리해서 생각할 필요 없음.
  연산그래프: 방향성이 있는 변수를 의미하는 노드와 엣지(연산을 담당)로 구성
  신경망은 연산 그래프를 이용하여 계산 수행
  네트워크가 학습될 때 손실 함수의 기울기가 가중치와 바이어스를 기반으로 계산되며, 이후 경사 하강법을 사용하여 가중치 업데이트
@@ -26,7 +28,7 @@
 - 파이토치의 장점: 단순함(효율적인 계산), 성능(낮은 CPU 활용), 직관적인 인터페이스
 
 #### 2.1.2 파이토치 아키텍처
-<아키텍처 3개의 계층>
+(아키텍처 3개의 계층)
 1. 파이토치 API: torch, torch.autograd. torch.nn, torch.multiprocessing, torch.utils
 2. 파이토치 엔진: 다차원 텐서 및 자동 미분, AUtograd C++, Aten C++, JIT C++, Python API
 3. 연산 처리
@@ -60,13 +62,16 @@
 ### 2.2 파이토치 기초 문법
 파이토치는 텐서로 시작해서 텐서로 끝난다고 해도 과언이 아니다.
 #### 2.2.1 텐서 다루기
+
 텐서 생성 코드
+
     import torch
     print(torch.tensor([[1,2], [3,4]])) -> 2차원 형태의 텐서 생성
     print(torch.tensor([[1,2], [3,4]], device="cuda:0")) ->GPU에 텐서 생성
     print(torch.tensor([[1,2], [3,4]], dtype=torch.float64)) -> dtype을 이용하여 텐서 생성
 
 텐서를 ndrarray로 변환
+
     temp = torch.tensor([[1,2], [3,4]])
     print(temp.numpy()) -> 텐서를 ndarray로 변환
     temp = torch.tensor([[1,2], [3,4]], divice = "cuda:0")
@@ -80,6 +85,7 @@
 - torch.Long Tensor: 64비트의 부호가 있는 정수
 
 인덱스 조작 코드
+
     temp = torch.FloatTensor([1,2,3,4,5,6,7])
     print(temp[0], temp[1], temp[-1]) ->인덱스로 접근
     print(temp[2:5], temp[4: -1]) -> 슬라이스로 접근
@@ -90,6 +96,7 @@
 - transpose: 행렬의 전치외에도 차원의 순서를 변경할 때 사용
 
 텐서를 조작하는 코드
+
     temp= torch.tensor([[1,2], [3,4]]) -> 2*2행렬 생성
     print(temp.shape)
     print(temp.view(4,1)) -> 4*1로 변형
